@@ -1,0 +1,13 @@
+.pasteInput{
+    height: 300px;
+    width: 600px;
+    border: #726b71 solid 2px;
+    outline: #726b71 solid 1px;
+    resize: none;
+}
+.btn{
+    height: 40px;
+    width: 100px;
+    cursor: pointer;
+
+}
