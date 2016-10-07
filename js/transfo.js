@@ -22,15 +22,7 @@ var typesetting = function(context) {
             }
         }
         if (context[i] == '\n'){
-            if (bLine == true){
-                context[i] = ''
-            }else{
-                bLine = true
-            }
-        }else{
-            if (bLine == true){
-                bLine = false
-            }
+            context[i] = '';
         }
     }
     return context;
@@ -39,7 +31,7 @@ var typesetting = function(context) {
 var addTime = function(N){
     // [00:00.50]
     var Time = '[';
-    var secs = 4 * N;
+    var secs = 2 * N;
     var sec = secs % 60;
     var min = Math.floor(secs / 60).toString();
     min = '000'+min;
@@ -62,7 +54,7 @@ var transfo = function() {
         var _text_ = [];
         var _view_ = "";    // String
         while (text.length) {
-            _text_ = text.splice(0, 32);
+            _text_ = text.splice(0, 16);
             _text_ = typesetting(_text_);
             _view_ = _text_.join("");
             // view += _view_;
@@ -71,6 +63,10 @@ var transfo = function() {
             oOutput.value += _view_;
             oOutput.value += '\n';
             i++;
+            if (i > 600){
+                i = 0;
+                oOutput.value += '\n********************我是帅气的分割线********************\n\n'
+            }
         }
         console.log(addTime(i));
     }
@@ -80,5 +76,8 @@ window.onload = function(){
     transfo();
 };
 
+// 注意：
+// 1. 2秒1节，1节16个字
+// 2. 不能有^13的回车，全部替换成^l
 
 
